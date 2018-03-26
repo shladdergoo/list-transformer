@@ -1,0 +1,47 @@
+ID                  NAME                                              MODE                REPLICAS            IMAGE                                                                      PORTS
+0nuj7vqbzlnb        platadm_manageusersvc                             replicated          3/3                 sp3registry-on.azurecr.io/manageusersvc:1.1.30                             
+14yg8mdxnnid        prereq_rabbit2                                    replicated          1/1                 sp3registry-on.azurecr.io/sp3-rabbitmq-cluster:1.0                         
+2873dkseoo82        caseman_mongo-migrate-case                        replicated          0/1                 sp3registry-on.azurecr.io/mongo-migrate-case:branch-1.1                    
+3lfk2gu86lf9        platadm_managerolesvc                             replicated          3/3                 sp3registry-on.azurecr.io/managerolesvc:1.1.30                             
+3sflp19xbe24        caseman_caseidgenerator                           replicated          3/3                 sp3registry-on.azurecr.io/caseidgenerator:1.1.68                           
+40pb9qc4w0tt        prereq_rabbit1                                    replicated          1/1                 sp3registry-on.azurecr.io/sp3-rabbitmq-cluster:1.0                         
+4rfkdabtlj0d        platadm_locationsquerysvc                         replicated          3/3                 sp3registry-on.azurecr.io/locationsquerysvc:1.1.30                         
+4web2biwc2f4        caseman_corsyscasemanagementriskassociationmsvc   replicated          3/3                 sp3registry-on.azurecr.io/corsyscasemanagementriskassociationmsvc:1.1.68   
+5or96c3it1y9        appsett_omappsettingsquerysvc                     replicated          3/3                 sp3registry-on.azurecr.io/omappsettingsquerysvc:1.1.10                     
+705plncf39qx        platadm_devicesquerysvc                           replicated          3/3                 sp3registry-on.azurecr.io/devicesquerysvc:1.1.30                           
+9b05x7dkdcnh        caseman_managecasesvc                             replicated          3/3                 sp3registry-on.azurecr.io/managecasesvc:1.1.68                             
+9whwfsq5cov8        prereq_redis                                      replicated          1/1                 sp3registry-on.azurecr.io/redis:3.2                                        *:6379->6379/tcp
+a2pjs8kr5ghb        plataud_corsysplatformaudit                       replicated          3/3                 sp3registry-on.azurecr.io/corsysplatformaudit:1.1.6                        
+ah2ntzc2v8hj        platadm_usersquerysvc                             replicated          3/3                 sp3registry-on.azurecr.io/usersquerysvc:1.1.30                             
+cgqnemahi7xc        apigate_tyk_gateway                               replicated          3/3                 sp3registry-on.azurecr.io/tyk-gateway:1.1.9                                *:5001->8080/tcp
+erjvb1kz4zlj        platadm_managesettingssvc                         replicated          3/3                 sp3registry-on.azurecr.io/managesettingssvc:1.1.30                         
+ii7bma0a9mqr        scanman_mongo-migrate-scan                        replicated          0/1                 sp3registry-on.azurecr.io/mongo-migrate-scan:branch-1.1                    
+itfqqysvzdzo        scanman_corsysappsscanassociatemsvc               replicated          3/3                 sp3registry-on.azurecr.io/corsysappsscanassociatemsvc:1.1.31               
+k8msjajpy4re        platcon_corsysplatformconfigquerysrv              replicated          3/3                 sp3registry-on.azurecr.io/corsysplatformconfigquerysrv:1.1.8               *:10001->5000/tcp
+layu03axnpnk        platadm_rolesquerysvc                             replicated          3/3                 sp3registry-on.azurecr.io/rolesquerysvc:1.1.30                             
+ll9o2t0myxth        caseman_corsysservicescasehistorymsvc             replicated          3/3                 sp3registry-on.azurecr.io/corsysservicescasehistorymsvc:1.1.68             
+lojopfxd9nin        platadm_appsquerysvc                              replicated          3/3                 sp3registry-on.azurecr.io/appsquerysvc:1.1.30                              
+lqnim8cm6e8v        platmon_corsysplatformmonetisation                replicated          3/3                 sp3registry-on.azurecr.io/corsysplatformmonetisation:1.1.13                *:8041->5000/tcp
+lt7y9fn4ttug        ucp-agent-win                                     global              0/0                 docker/ucp-agent-win:2.2.5                                                 
+ne3tqfl976pr        bi_corsys_dashboard_api                           replicated          1/1                 sp3registry-on.azurecr.io/corsys-databoard-api:1.1.00003                   
+nepv727h7hqa        asismgt_corsysappsanalysisquerysvc                replicated          3/3                 sp3registry-on.azurecr.io/corsysappsanalysisquerysvc:1.1.37                
+pmybobomlrjh        caseman_casequerysvc                              replicated          3/3                 sp3registry-on.azurecr.io/casequerysvc:1.1.68                              
+qdqy4erfd047        asismgt_corsysappsmanageanalysissvc               replicated          3/3                 sp3registry-on.azurecr.io/corsysappsmanageanalysissvc:1.1.37               
+qgcp05pklrn4        appsett_manageomappsettingssvc                    replicated          3/3                 sp3registry-on.azurecr.io/manageomappsettingssvc:1.1.10                    
+rn2rwcesux1s        caseman_casemanagementautocompletesvc             replicated          3/3                 sp3registry-on.azurecr.io/casemanagementautocompletesvc:1.1.68             
+rqepecnhtu5n        asismgt_corsysappsverdictmsvc                     replicated          3/3                 sp3registry-on.azurecr.io/corsysappsverdictmsvc:1.1.37                     
+s1bphayqh60x        fileman_corsysappsfilesquerysvc                   replicated          3/3                 sp3registry-on.azurecr.io/corsysappsfilesquerysvc:1.1.16                   
+sjp3oo6clmsl        platadm_managedevicessvc                          replicated          3/3                 sp3registry-on.azurecr.io/managedevicessvc:1.1.30                          
+so7rz10vfi7q        platadm_managelocationssvc                        replicated          3/3                 sp3registry-on.azurecr.io/managelocationssvc:1.1.30                        
+stace8y5fqb7        scanman_corsysappsscanuploadsvc                   replicated          3/3                 sp3registry-on.azurecr.io/corsysappsscanuploadsvc:1.1.31                   
+vcr9apbb4pns        caseman_createcasemsvc                            replicated          3/3                 sp3registry-on.azurecr.io/createcasemsvc:1.1.68                            
+vfxforvmz7sj        webui_web-ui-new                                  replicated          3/3                 sp3registry-on.azurecr.io/web-ui-new:1.1.54                                
+vsvpqdgrr89d        prereq_rabbit                                     replicated          1/1                 sp3registry-on.azurecr.io/sp3-rabbitmq-cluster:1.0                         *:5672->5672/tcp,*:15672->15672/tcp
+wsfci9pspmth        platlog_corsysplatformlogging                     replicated          3/3                 sp3registry-on.azurecr.io/corsysplatformlogging:1.1.6                      
+wsgkl69sgvdj        ucp-agent-s390x                                   global              0/0                 docker/ucp-agent-s390x:2.2.5                                               
+xey3s7xmfg3q        ucp-agent                                         global              6/6                 docker/ucp-agent:2.2.5                                                     
+xvzqwp5lguj2        platadm_manageappssvc                             replicated          3/3                 sp3registry-on.azurecr.io/manageappssvc:1.1.30                             
+z5c9okz0c204        platadm_gensettingsquerysvc                       replicated          3/3                 sp3registry-on.azurecr.io/gensettingsquerysvc:1.1.30                       
+zjjue5ndyt6s        asismgt_mongo-migrate-analysis                    replicated          0/1                 sp3registry-on.azurecr.io/mongo-migrate-analysis:branch-1.1                
+zpzn1v01bjpk        fileman_corsysappsmanagefilesvc                   replicated          3/3                 sp3registry-on.azurecr.io/corsysappsmanagefilesvc:1.1.16                   
+zzj49dcyo18v        webui_metadataquerysvc                            replicated          3/3                 sp3registry-on.azurecr.io/metadataquerysvc:latest                          
