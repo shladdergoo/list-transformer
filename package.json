@@ -56,7 +56,6 @@
       "ts",
       "js"
     ],
-    "testEnvironment": "node",
-    "mapCoverage": true
+    "testEnvironment": "node"
   }
 }
