@@ -25,10 +25,10 @@
       "args": [
         "--findRelatedTests",
         "${relativeFile}",
-        "--env",
-        "jest-environment-node-debug"
+        "-i"
       ],
-      "cwd": "${workspaceRoot}"
+      "cwd": "${workspaceRoot}",
+      "sourceMaps": false
     }
   ]
 }
