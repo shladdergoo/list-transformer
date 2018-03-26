@@ -1,3 +1,9 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib/"
+    "typescript.tsdk": "node_modules/typescript/lib/",
+    "files.exclude": {
+        "coverage": true,
+        "node_modules/": true,
+        "lib": true,
+        "test-report.xml": true
+    }
 }

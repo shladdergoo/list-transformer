@@ -1,13 +1,13 @@
 {
   "name": "list-transformer",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "list-transformer",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/shladdergoo/list-transformer",
   "author": {
-    "name": "",
-    "email": "",
-    "url": ""
+    "name": "James Fox",
+    "email": "james.fox@datagility.co.uk",
+    "url": "https://github.com/shladdergoo/list-transformer"
   },
   "keywords": [
     ""
@@ -33,9 +33,11 @@
   "devDependencies": {
     "@types/jest": "^22.0.1",
     "@types/node": "^8.0.0",
-    "coveralls": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-inline-source": "^3.1.0",
     "jest": "^22.0.4",
     "jest-environment-node-debug": "^2.0.0",
+    "jest-junit-reporter": "^1.1.0",
     "prettier": "^1.5.2",
     "rimraf": "^2.0.0",
     "ts-jest": "^22.0.1",
@@ -56,6 +58,19 @@
       "ts",
       "js"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testResultsProcessor": "./node_modules/jest-junit-reporter",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.ts",
+      "!**/*.d.ts",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "coverageReporters": [
+      "text",
+      "cobertura",
+      "html"
+    ]
   }
 }
