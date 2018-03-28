@@ -24,22 +24,26 @@
     "prepare": "npm run build",
     "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
     "build": "tsc --pretty",
-    "test": "jest",
-    "coverage": "jest --coverage",
-    "watch": "npm run build -- --watch",
-    "watch:test": "jest --watch"
+    "pretest": "npm run build",
+    "test": "nyc --reporter text --reporter text-summary mocha __tests__/_bootstrapTests.js lib/__tests__/**/*spec.js --reporter spec",
+    "test-ci": "nyc --reporter=html --reporter=cobertura npm run test",
+    "coverage": "nyc npm run test",
+    "watch": "npm run build -- --watch"
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^22.0.1",
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^5.0.0",
     "@types/node": "^8.0.0",
+    "chai": "^4.1.2",
     "gulp": "^3.9.1",
     "gulp-inline-source": "^3.1.0",
-    "jest": "^22.0.4",
-    "jest-junit-reporter": "^1.1.0",
+    "mocha": "^5.0.5",
+    "mocha-junit-reporter": "^1.17.0",
+    "nyc": "^11.6.0",
     "prettier": "^1.5.2",
     "rimraf": "^2.0.0",
-    "ts-jest": "^22.0.1",
+    "source-map-support": "^0.5.4",
     "ts-node": "^3.2.0",
     "tslint": "^5.0.0",
     "tslint-config-prettier": "^1.1.0",
@@ -48,28 +52,10 @@
   "engines": {
     "node": ">=6.0.0"
   },
-  "jest": {
-    "transform": {
-      ".(ts)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "testEnvironment": "node",
-    "testResultsProcessor": "./node_modules/jest-junit-reporter",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "**/*.ts",
-      "!**/*.d.ts",
-      "!**/node_modules/**",
-      "!**/vendor/**"
-    ],
-    "coverageReporters": [
-      "text",
-      "cobertura",
-      "html"
+  "nyc": {
+    "reporter": [
+      "html",
+      "text"
     ]
   }
 }

@@ -11,16 +11,16 @@
     "outDir": "./lib",
     "preserveConstEnums": true,
     "removeComments": true,
-    "inlineSourceMap": true,
+    "sourceMap": true,
     "typeRoots": [
       "./node_modules/@types"
     ]
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "__tests__/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "**/*-spec.ts"
+    "node_modules"
   ]
 }

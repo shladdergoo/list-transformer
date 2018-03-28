@@ -1,6 +1,13 @@
+import * as chai from 'chai';
+import 'mocha';
+
 import { Greeter } from '../src/greeter';
 
-test('Should greet with message', () => {
-  const greeter = new Greeter('friend');
-  expect(greeter.greet()).toBe('Bonjour, friend!');
+const expect = chai.expect;
+
+describe('Greeter', () => {
+  it('should return greeting', () => {
+    const greeter = new Greeter('friend');
+    expect(greeter.greet()).to.equal('Bonjour, friend!');
+  });
 });

@@ -1,52 +1,75 @@
+import * as chai from 'chai';
+import 'mocha';
+
 import { ListParser } from '../src/listParser';
 import { TransformerConfig } from '../src/model/transformerConfig';
+import { LineElementConfig } from '../src/model/lineElementConfig';
+
+const expect = chai.expect;
+
+function buildConfigWithElements(elementSeparator: string): TransformerConfig {
+  const elementConfigs: LineElementConfig[] = [
+    new LineElementConfig(4, elementSeparator),
+  ];
+  return new TransformerConfig(' ', elementConfigs);
+}
 
 const config = new TransformerConfig(' ');
 
 const validLineWithSpaces =
   '0nuj7vqbzlnb        platadm_manageusersvc                             replicated          3/3                 sp3registry-on.azurecr.io/manageusersvc:1.1.30';
 
-test('null line throws exception', () => {
-  expect(() => {
-    const listParser = new ListParser(config);
-    listParser.parseLine(null);
-  }).toThrowError(ReferenceError);
-});
+describe('ListParser', () => {
+  describe('parseLine', () => {
+    it('throws exception when line is undefined', () => {
+      expect(() => {
+        const listParser = new ListParser(config);
+        let line: string;
+        listParser.parseLine(line!);
+      }).to.throw(ReferenceError);
+    });
 
-test('undefined line throws exception', () => {
-  expect(() => {
-    const listParser = new ListParser(config);
-    let line: string;
-    listParser.parseLine(line);
-  }).toThrowError(ReferenceError);
-});
+    it('should return some value for a valid line', () => {
+      const listParser = new ListParser(config);
+      expect(listParser.parseLine(validLineWithSpaces)).to.not.be.undefined;
+    });
 
-test('valid line, returns some value', () => {
-  const listParser = new ListParser(config);
-  expect(listParser.parseLine(validLineWithSpaces)).toBeDefined();
-});
+    it('should return a non-empty array for a valid line', () => {
+      const listParser = new ListParser(config);
+      let result: string[] = listParser.parseLine(validLineWithSpaces);
+      expect(result.length).to.be.greaterThan(0);
+    });
 
-test('valid line, returns a non-empty array', () => {
-  const listParser = new ListParser(config);
-  let result: string[];
-  result = listParser.parseLine(validLineWithSpaces);
-  expect(result.length).toBeGreaterThan(0);
-});
+    it('should return correct values for a valid line', () => {
+      const listParser = new ListParser(config);
+      let result: string[] = listParser.parseLine(validLineWithSpaces);
+      expect(result.length).to.equal(5);
+    });
 
-test('valid line, returns correct values', () => {
-  const listParser = new ListParser(config);
-  let result: string[];
-  result = listParser.parseLine(validLineWithSpaces);
-  expect(result.length).toEqual(5);
-});
+    it('for a valid line, values do not include separator', () => {
+      const listParser = new ListParser(config);
+      let result: string[] = listParser.parseLine(validLineWithSpaces);
 
-test('valid line, values do not include separator', () => {
-  const listParser = new ListParser(config);
-  let result: string[];
-  result = listParser.parseLine(validLineWithSpaces);
+      result.forEach(element => {
+        expect(element.startsWith(config.lineSeparator)).to.be.false;
+        expect(element.endsWith(config.lineSeparator)).to.be.false;
+      });
+    });
 
-  result.forEach(element => {
-    expect(element.startsWith(config.lineSeparator)).toBeFalsy;
-    expect(element.endsWith(config.lineSeparator)).toBeFalsy;
+    it('doesnt split element when element separator is empty string', () => {
+      let configWithElements = buildConfigWithElements('');
+
+      const listParser = new ListParser(configWithElements);
+      let result: string[] = listParser.parseLine(validLineWithSpaces);
+      expect(result.length).to.equal(5);
+    });
+
+    it('splits element when element has separator', () => {
+      let configWithElements = buildConfigWithElements(':');
+
+      const listParser = new ListParser(configWithElements);
+      let result: string[] = listParser.parseLine(validLineWithSpaces);
+      expect(result.length).to.equal(6);
+    });
   });
 });
