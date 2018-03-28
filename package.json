@@ -26,7 +26,7 @@
     "build": "tsc --pretty",
     "pretest": "npm run build",
     "test": "nyc --reporter text --reporter text-summary mocha __tests__/_bootstrapTests.js lib/__tests__/**/*spec.js --reporter spec",
-    "test-ci": "nyc --reporter=html --reporter=cobertura npm run test",
+    "test-ci": "nyc --reporter=html --reporter=cobertura mocha __tests__/_bootstrapTests.js lib/__tests__/**/*spec.js --reporter mocha-junit-reporter",
     "coverage": "nyc npm run test",
     "watch": "npm run build -- --watch"
   },
