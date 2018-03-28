@@ -1,4 +1,5 @@
 import { TransformerConfig } from './model/transformerConfig';
+import { LineElementConfig } from './model/lineElementConfig';
 
 export class ListParser {
   private _transformerConfig: TransformerConfig;
@@ -16,7 +17,7 @@ export class ListParser {
       .split(this._transformerConfig.lineSeparator)
       .filter(x => x.length > 0);
 
-    if (this._transformerConfig.lineElements.length > 0) {
+    if (this._transformerConfig.elementSeparatorConfig.length > 0) {
       return this.insertSplitElements(basicElements);
     }
 
@@ -26,11 +27,9 @@ export class ListParser {
   private insertSplitElements(basicElements: string[]): string[] {
     let updatedElements = basicElements;
 
-    this._transformerConfig.lineElements.forEach(config => {
+    this._transformerConfig.elementSeparatorConfig.forEach(config => {
       if (config.elementSeparator !== '') {
-        const elementValues = basicElements[config.index]
-          .split(config.elementSeparator)
-          .filter(x => x.length > 0);
+        const elementValues = this.getSplitElementValues(basicElements, config);
 
         updatedElements = this.insertElementValues(
           updatedElements,
@@ -42,6 +41,24 @@ export class ListParser {
     return updatedElements;
   }
 
+  private getSplitElementValues(
+    basicElements: string[],
+    lineElementConfig: LineElementConfig
+  ): string[] {
+    let rawSplitElements = basicElements[lineElementConfig.index]
+      .split(lineElementConfig.elementSeparator)
+      .filter(x => x.length > 0);
+
+    const newElements = rawSplitElements.filter((v, i) =>
+      lineElementConfig.instanceIndices.includes(i)
+    );
+    const restoredElements = rawSplitElements
+      .filter((v, i) => !lineElementConfig.instanceIndices.includes(i))
+      .join(lineElementConfig.elementSeparator);
+
+    return newElements.concat(restoredElements);
+  }
+
   private insertElementValues(
     updatedElements: string[],
     elementValues: string[],
@@ -50,7 +67,7 @@ export class ListParser {
     const leftPart = updatedElements.slice(0, originalIndex);
     const rightPart = updatedElements.slice(
       originalIndex + 1,
-      updatedElements.length - 1
+      updatedElements.length
     );
 
     return leftPart.concat(elementValues, rightPart);

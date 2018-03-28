@@ -13,7 +13,7 @@ export class TransformerConfig {
     return this._lineSeparator;
   }
 
-  public get lineElements(): LineElementConfig[] {
+  public get elementSeparatorConfig(): LineElementConfig[] {
     return this._lineElements;
   }
 }
