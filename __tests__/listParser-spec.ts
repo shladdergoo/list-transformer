@@ -26,6 +26,15 @@ const validLineWithSpaces2 =
   'cgqnemahi7xc        apigate_tyk_gateway                               replicated          3/3                 sp3registry-on.azurecr.io/tyk-gateway:1.1.9                                *:5001->8080/tcp';
 
 describe('ListParser', () => {
+  describe('constructor', () => {
+    it('throws exception when transformerConfig is undefined', () => {
+      expect(() => {
+        let transformerConfig: TransformerConfig;
+        const listParser = new ListParser(transformerConfig!);
+      }).to.throw(ReferenceError);
+    });
+  });
+
   describe('parseLine', () => {
     it('throws exception when line is undefined', () => {
       expect(() => {

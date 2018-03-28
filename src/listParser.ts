@@ -5,12 +5,15 @@ export class ListParser {
   private _transformerConfig: TransformerConfig;
 
   constructor(transformerConfig: TransformerConfig) {
+    if (!transformerConfig) {
+      throw new ReferenceError('transformerConfig undefined');
+    }
     this._transformerConfig = transformerConfig;
   }
 
   public parseLine(line: string): string[] {
-    if (line == null) {
-      throw new ReferenceError('line cannot be null');
+    if (!line) {
+      throw new ReferenceError('line undefined');
     }
 
     const basicElements = line
