@@ -12,7 +12,11 @@ export class SetTransformer implements ISetTransformer {
     this._transformerConfig = transformerConfig;
   }
 
-  groupBy(values: string[][], key: number, select: number[]): string[][] {
+  public groupBy(
+    values: string[][],
+    key: number,
+    select: number[]
+  ): string[][] {
     throw new Error('Method not implemented.');
   }
 }
