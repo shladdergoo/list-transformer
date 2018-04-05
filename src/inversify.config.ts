@@ -1,8 +1,8 @@
 import { Container } from 'inversify';
 import Types from './types';
 
-let container = new Container();
+const container = new Container();
 
-//TODO: Bindings here.
+// TODO: Bindings here.
 
 export default container;

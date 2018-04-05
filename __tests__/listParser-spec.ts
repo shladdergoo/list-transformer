@@ -1,6 +1,7 @@
 import * as chai from 'chai';
 import 'mocha';
 
+import { IListParser } from '../src/interface/ilistParser';
 import { ListParser } from '../src/listParser';
 import { TransformerConfig } from '../src/model/transformerConfig';
 import { LineElementConfig } from '../src/model/lineElementConfig';
@@ -30,7 +31,7 @@ describe('ListParser', () => {
     it('throws exception when transformerConfig is undefined', () => {
       expect(() => {
         let transformerConfig: TransformerConfig;
-        const listParser = new ListParser(transformerConfig!);
+        const listParser: IListParser = new ListParser(transformerConfig!);
       }).to.throw(ReferenceError);
     });
   });
@@ -38,7 +39,7 @@ describe('ListParser', () => {
   describe('parseLine', () => {
     it('throws exception when line is undefined', () => {
       expect(() => {
-        const listParser = new ListParser(config);
+        const listParser: IListParser = new ListParser(config);
         let line: string;
         listParser.parseLine(line!);
       }).to.throw(ReferenceError);
@@ -50,19 +51,19 @@ describe('ListParser', () => {
     });
 
     it('should return a non-empty array for a valid line', () => {
-      const listParser = new ListParser(config);
+      const listParser: IListParser = new ListParser(config);
       let result: string[] = listParser.parseLine(validLineWithSpaces1);
       expect(result.length).to.be.greaterThan(0);
     });
 
     it('should return correct values for a valid line', () => {
-      const listParser = new ListParser(config);
+      const listParser: IListParser = new ListParser(config);
       let result: string[] = listParser.parseLine(validLineWithSpaces1);
       expect(result.length).to.equal(5);
     });
 
     it('for a valid line, values do not include separator', () => {
-      const listParser = new ListParser(config);
+      const listParser: IListParser = new ListParser(config);
       let result: string[] = listParser.parseLine(validLineWithSpaces1);
 
       result.forEach(element => {
@@ -74,7 +75,7 @@ describe('ListParser', () => {
     it('doesnt split element when element separator is empty string', () => {
       let configWithElements = buildConfigWithElements(4, '', [0]);
 
-      const listParser = new ListParser(configWithElements);
+      const listParser: IListParser = new ListParser(configWithElements);
       let result: string[] = listParser.parseLine(validLineWithSpaces1);
       expect(result.length).to.equal(5);
     });
@@ -82,7 +83,7 @@ describe('ListParser', () => {
     it('splits element when element has separator', () => {
       let configWithElements = buildConfigWithElements(4, ':', [0]);
 
-      const listParser = new ListParser(configWithElements);
+      const listParser: IListParser = new ListParser(configWithElements);
       let result: string[] = listParser.parseLine(validLineWithSpaces1);
       expect(result.length).to.equal(6);
     });
@@ -90,7 +91,7 @@ describe('ListParser', () => {
     it('should use element separator the correct number of times', () => {
       let configWithElements = buildConfigWithElements(1, '_', [0]);
 
-      const listParser = new ListParser(configWithElements);
+      const listParser: IListParser = new ListParser(configWithElements);
       let result: string[] = listParser.parseLine(validLineWithSpaces2);
       expect(result.length).to.equal(7);
     });

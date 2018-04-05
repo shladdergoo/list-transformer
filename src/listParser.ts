@@ -1,7 +1,8 @@
-import { TransformerConfig } from './model/transformerConfig';
+import { IListParser } from './interface/ilistParser';
 import { LineElementConfig } from './model/lineElementConfig';
+import { TransformerConfig } from './model/transformerConfig';
 
-export class ListParser {
+export class ListParser implements IListParser {
   private _transformerConfig: TransformerConfig;
 
   constructor(transformerConfig: TransformerConfig) {
@@ -48,7 +49,7 @@ export class ListParser {
     basicElements: string[],
     lineElementConfig: LineElementConfig
   ): string[] {
-    let rawSplitElements = basicElements[lineElementConfig.index]
+    const rawSplitElements = basicElements[lineElementConfig.index]
       .split(lineElementConfig.elementSeparator)
       .filter(x => x.length > 0);
 
