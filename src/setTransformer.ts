@@ -6,7 +6,7 @@ export class SetTransformer implements ISetTransformer {
   private _transformerConfig: TransformerConfig;
 
   constructor(transformerConfig: TransformerConfig) {
-    if (!transformerConfig) {
+    if (transformerConfig === undefined) {
       throw new ReferenceError('transformerConfig undefined');
     }
     this._transformerConfig = transformerConfig;
@@ -17,6 +17,16 @@ export class SetTransformer implements ISetTransformer {
     key: number,
     select: number[]
   ): string[][] {
+    if (values === undefined) {
+      throw new ReferenceError('values undefined');
+    }
+    if (key === undefined) {
+      throw new ReferenceError('key undefined');
+    }
+    if (select === undefined) {
+      throw new ReferenceError('select undefined');
+    }
+
     throw new Error('Method not implemented.');
   }
 }

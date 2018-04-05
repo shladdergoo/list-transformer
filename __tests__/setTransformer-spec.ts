@@ -19,4 +19,48 @@ describe('ListParser', () => {
       }).to.throw(ReferenceError);
     });
   });
+
+  describe('groupBy', () => {
+    it('throws exception when values is undefined', () => {
+      expect(() => {
+        let values: string[][];
+        const key: number = 0;
+        const select: number[] = [0, 1, 2];
+
+        const setTransformer: ISetTransformer = new SetTransformer(
+          new TransformerConfig(' ')
+        );
+
+        setTransformer.groupBy(values!, key, select);
+      }).to.throw(ReferenceError);
+    });
+
+    it('throws exception when key is undefined', () => {
+      expect(() => {
+        const values: string[][] = [['foo', 'bar']];
+        let key: number;
+        const select: number[] = [0, 1, 2];
+
+        const setTransformer: ISetTransformer = new SetTransformer(
+          new TransformerConfig(' ')
+        );
+
+        setTransformer.groupBy(values, key!, select);
+      }).to.throw(ReferenceError);
+    });
+
+    it('throws exception when select is undefined', () => {
+      expect(() => {
+        const values: string[][] = [['foo', 'bar']];
+        const key: number = 0;
+        let select: number[];
+
+        const setTransformer: ISetTransformer = new SetTransformer(
+          new TransformerConfig(' ')
+        );
+
+        setTransformer.groupBy(values, key, select!);
+      }).to.throw(ReferenceError);
+    });
+  });
 });
