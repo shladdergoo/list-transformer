@@ -1,4 +1,4 @@
-import { ISetTransformer } from './interface/iSetTransformer';
+import { ISetTransformer } from './interface/isetTransformer';
 import { LineElementConfig } from './model/lineElementConfig';
 import { TransformerConfig } from './model/transformerConfig';
 
