@@ -6,14 +6,14 @@ export class ListParser implements IListParser {
   private _transformerConfig: TransformerConfig;
 
   constructor(transformerConfig: TransformerConfig) {
-    if (!transformerConfig) {
+    if (transformerConfig === undefined) {
       throw new ReferenceError('transformerConfig undefined');
     }
     this._transformerConfig = transformerConfig;
   }
 
   public parseLine(line: string): string[] {
-    if (!line) {
+    if (line === undefined) {
       throw new ReferenceError('line undefined');
     }
 
