@@ -1,4 +1,5 @@
 ![Build Status](https://shladdergoo.visualstudio.com/_apis/public/build/definitions/914c71f9-d077-4687-ae87-d720697923a7/9/badge)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 # Using this module in other modules
 
